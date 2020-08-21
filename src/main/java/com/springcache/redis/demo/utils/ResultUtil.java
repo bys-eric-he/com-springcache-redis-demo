@@ -1,5 +1,6 @@
-package com.springcache.redis.demo.response;
+package com.springcache.redis.demo.utils;
 
+import com.springcache.redis.demo.response.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 

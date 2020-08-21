@@ -18,10 +18,6 @@ public class JedisDistributedLock {
     private static final String LOCK_SUCCESS = "OK";
     //解锁成功标志
     private static final String RELEASE_SUCCESS = "1";
-    //加锁标志
-    private static final String SET_IF_NOT_EXIST = "NX";
-    //给锁设置过期时间的标志
-    private static final String SET_WITH_PX_TIME = "PX";
 
     /**
      * 尝试获得锁

@@ -2,7 +2,7 @@ package com.springcache.redis.demo.controller;
 
 import com.springcache.redis.demo.entity.User;
 import com.springcache.redis.demo.response.Result;
-import com.springcache.redis.demo.response.ResultUtil;
+import com.springcache.redis.demo.utils.ResultUtil;
 import com.springcache.redis.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
