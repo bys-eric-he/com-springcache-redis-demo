@@ -121,7 +121,7 @@ public class BusinessTask {
 
                 //判断缓存的商品库存，是否被抢完了
                 if (productInfo.getProductStock() > 0 || productInfo.getProductStock() >= productQuantity) {
-                    log.info("当前库存->" + productInfo.getProductStock());
+                    log.info("剩余库存->" + productInfo.getProductStock());
                     // 将秒杀抢到商品的用户存入缓存
                     killUserIdMaps.put(user.getId(), productId);
                     // 减库存操作
@@ -177,7 +177,7 @@ public class BusinessTask {
 
             //判断缓存的商品库存，是否被抢完了
             if (productInfo.getProductStock() > 0 || productInfo.getProductStock() >= productQuantity) {
-                log.info("当前库存->" + productInfo.getProductStock());
+                log.info("剩余库存->" + productInfo.getProductStock());
                 // 将秒杀抢到商品的用户存入缓存
                 killUserIdMaps.put(user.getId(), productId);
                 // 减库存操作
@@ -225,7 +225,7 @@ public class BusinessTask {
             }
             //判断缓存的商品库存，是否被抢完了
             if (productInfo.getProductStock() > 0 || productInfo.getProductStock() >= productQuantity) {
-                log.info("当前库存->" + productInfo.getProductStock());
+                log.info("剩余库存->" + productInfo.getProductStock());
                 // 将秒杀抢到商品的用户存入缓存
                 killUserIdMaps.put(user.getId(), productId);
                 // 减库存操作
@@ -273,7 +273,7 @@ public class BusinessTask {
                 }
                 //判断缓存的商品库存，是否被抢完了
                 if (productInfo.getProductStock() > 0 || productInfo.getProductStock() >= productQuantity) {
-                    log.info("当前库存->" + productInfo.getProductStock());
+                    log.info("剩余库存->" + productInfo.getProductStock());
                     // 将秒杀抢到商品的用户存入缓存
                     killUserIdMaps.put(user.getId(), productId);
                     // 减库存操作

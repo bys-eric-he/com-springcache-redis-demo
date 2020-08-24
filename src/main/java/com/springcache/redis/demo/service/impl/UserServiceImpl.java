@@ -1,8 +1,11 @@
 package com.springcache.redis.demo.service.impl;
 
+import com.springcache.redis.demo.cache.CacheLoadable;
+import com.springcache.redis.demo.cache.CacheTemplate;
 import com.springcache.redis.demo.entity.User;
 import com.springcache.redis.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 用户实现
@@ -20,8 +24,11 @@ public class UserServiceImpl implements UserService {
 
     private static final Map<Long, User> DATABASES = new HashMap<>();
 
+    @Autowired
+    private CacheTemplate<User> cacheTemplate;
+
     static {
-        DATABASES.put(10001L, new User(10001L, "heyong", "heyong@1988"));
+        DATABASES.put(10001L, new User(10001L, "he yong", "heyong@1988"));
         DATABASES.put(10002L, new User(10002L, "eric.he", "eric@1988"));
         DATABASES.put(10003L, new User(10003L, "sky.zhang", "sky@1987"));
         DATABASES.put(10004L, new User(10004L, "alex.zheng", "alex@1989"));
@@ -49,11 +56,16 @@ public class UserServiceImpl implements UserService {
      * @param id key值
      * @return 返回结果
      */
-    @Cacheable(value = "userCache", key = "'user:' + #id", condition = "#id < 1000000")
     @Override
     public User get(Long id) {
-        log.info("----进入 get 方法----");
-        return DATABASES.get(id);
+        return cacheTemplate.getCacheData("cacheTemplate::userCache::user:" + id,
+                10000, TimeUnit.MINUTES, new CacheLoadable<User>() {
+                    @Override
+                    public User load() {
+                        log.info("----进入 get 方法----");
+                        return DATABASES.get(id);
+                    }
+                }, User.class);
     }
 
     /**
